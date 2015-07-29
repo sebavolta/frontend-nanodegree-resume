@@ -65,96 +65,15 @@ var bio = {
 		/*Format Bio Skills*/
 		formattedSkills = replaceData(HTMLskills, bio.welcomeMessage);
 
-		/*Append Skill Start*/
+		for(var i = 0; i < bio.skills.length; i++){
+			var formated
+		}
+
 		$("#header").append(HTMLskillsStart);
-
-		/*Format and append Skills*/
-		for(skill in bio.skills){
-			$("#skills:last").append(replaceData(HTMLskills, bio.skills[skill]));
-		}
+		
+		
 	}
 }
-
-/*Work JSON*/
-var work = {
-	"jobs": [
-		{
-			"employer": "ITX Corp.",
-			"title": "Front End Developer",
-			"location": "Rochester, USA",
-			"dates": "November 2011 - Today",
-			"description": "I work as a developer for CSS/JS solutions applied to DNN websites and Mobile Applications."
-		},
-		{
-			"employer": "Axyoma",
-			"title": "PHP and CSS Developer",
-			"location": "Rosario, Argentina",
-			"dates": "January 2009 - October 2011",
-			"description": "I worked as a developer for PHP backend solutions and CSS stylesheets for websites."
-		}
-	],
-	"display": function(){
-		/*Iterate Work*/
-		for(job in work.jobs){
-			/*Append Work Start*/
-			$("#workExperience").append(HTMLworkStart);
-
-			/*Format Work*/
-			var formattedEmployer = replaceData(HTMLworkEmployer, work.jobs[job].employer);
-			var formattedTitle = replaceData(HTMLworkTitle, work.jobs[job].title);
-			var formattedEmployerTitle = formattedEmployer + formattedTitle;
-			var formattedDates = replaceData(HTMLworkDates, work.jobs[job].dates);
-			var formattedLocation = replaceData(HTMLworkLocation, work.jobs[job].location);
-			var formattedDescription = replaceData(HTMLworkDescription, work.jobs[job].description);
-
-			/*Append Work*/
-			$('.work-entry:last').append(formattedEmployerTitle);
-			$('.work-entry:last').append(formattedDates);
-			$('.work-entry:last').append(formattedLocation);
-			$('.work-entry:last').append(formattedDescription);
-		}
-	}
-}
-
-/*Projects JSON*/
-var projects = {
-	"projects": [
-		{
-			"title": "ITX.com",
-			"dates": "January 2015 - March 2015",
-			"description": "Responsive website for the ITX company.",
-			"images": ["images/itx1.jpg", "images/itx2.jpg"]
-		},
-		{
-			"title": "Youth Villages",
-			"dates": "October 2014 - November 2014",
-			"description": "Responsive website for the Youth Villages caritative organization",
-			"images": ["images/yv1.jpg", "images/yv2.jpg"]
-		}
-	],
-	"display": function(){
-		/*Iterate Projects*/
-		for(proj in projects.projects){
-			/*Append Projects Start*/
-			$("#projects").append(HTMLprojectStart);
-
-			/*Format Projects*/
-			var formattedTitle = replaceData(HTMLprojectTitle, projects.projects[proj].title);
-			var formattedDates = replaceData(HTMLprojectDates, projects.projects[proj].dates);
-			var formattedDescription = replaceData(HTMLprojectDescription, projects.projects[proj].description);
-
-			/*Append Projects*/
-			$('.project-entry:last').append(formattedTitle);
-			$('.project-entry:last').append(formattedDates);
-			$('.project-entry:last').append(formattedDescription);
-
-			/*Format and Append Projects Images*/
-			for(img in projects.projects[proj].images){
-				$('.project-entry:last').append(replaceData(HTMLprojectImage, projects.projects[proj].images[img]));
-			}
-		}
-	}
-} 
 
 /*Education JSON */
 var education = {
@@ -195,14 +114,54 @@ var education = {
 	}
 }
 
+/*Work JSON*/
+var work = {
+	"jobs": [
+		{
+			"employer": "ITX Corp.",
+			"title": "Front End Developer",
+			"location": "Rochester, USA",
+			"dates": "November 2011 - Today",
+			"description": "I develope CSS/JS solutions for DNN websites and Mobile Applications."
+		},
+		{
+			"employer": "Axyoma",
+			"title": "PHP and CSS Developer",
+			"location": "Rosario, Argentina",
+			"dates": "January 2009 - October 2011",
+			"description": "I developed PHP backend solutions and CSS stylesheets for websites."
+		}
+	],
+	"display": function(){
+		//
+	}
+}
+
+/*Projects JSON*/
+var projects = {
+	"projects": [
+		{
+			"title": "ITX.com",
+			"dates": "January 2015 - March 2015",
+			"description": "Responsive website for the ITX company.",
+			"images": ["", ""]
+		},
+		{
+			"title": "Youth Villages",
+			"dates": "October 2014 - November 2014",
+			"description": "Responsive website for the Youth Villages caritative organization",
+			"images": ["", ""]
+		}
+	],
+	"display": function(){
+		//
+	}
+} 
+      
+
+
 /*Run Bio display*/
 bio.display();
-
-/*Run Work display*/
-work.display();
-
-/*Run Projects display*/
-projects.display();
 
 
 
