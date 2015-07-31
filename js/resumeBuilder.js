@@ -1,5 +1,7 @@
 /*General Vars*/
 var dat = "%data%";
+var url = "%url%";
+var contact = "%contact%";
 
 /*Generic replace function*/
 function replaceData(el, info, data){
@@ -36,7 +38,7 @@ var bio = {
 		$("#header").prepend(formattedName);
 
 		/*Format Bio Contact*/
-		var formattedGenericCont = replaceData(HTMLcontactGeneric, "Contact Info:", "%contact%");
+		var formattedGenericCont = replaceData(HTMLcontactGeneric, "Contact Info:", contact);
 		var formattedGeneric = replaceData(formattedGenericCont, bio.contacts.generic);
 		var formattedMobile = replaceData(HTMLmobile, bio.contacts.mobile);
 		var formattedEmail = replaceData(HTMLemail, bio.contacts.email);
@@ -191,7 +193,46 @@ var education = {
 		}
 	],
 	"display": function(){
-		//
+		/*Iterate Education*/
+		for(school in education.schools){
+			/*Append Education Start*/
+			$("#education").append(HTMLschoolStart);
+
+			/*Format Education*/
+			var formattedSchoolName = replaceData(HTMLschoolName, education.schools[school].name);
+			var formattedSchoolNameAndUrl = replaceData(formattedSchoolName, education.schools[school].url, url);
+			var formattedSchoolDegree = replaceData(HTMLschoolDegree, education.schools[school].degree);
+			var formattedNameUrlDeg = formattedSchoolNameAndUrl + formattedSchoolDegree;
+			var formattedSchoolDates = replaceData(HTMLschoolDates, education.schools[school].dates);
+			var formattedSchoolLocation = replaceData(HTMLschoolLocation, education.schools[school].city);
+			var formattedSchoolMajor = replaceData(HTMLschoolMajor, education.schools[school].majors);
+
+			/*Append Education*/
+			$('.education-entry:last').append(formattedNameUrlDeg);
+			$('.education-entry:last').append(formattedSchoolDates);
+			$('.education-entry:last').append(formattedSchoolLocation);
+			$('.education-entry:last').append(formattedSchoolMajor);
+		}
+
+		/*Append Online Classes title*/
+		$("#education").append(HTMLonlineClasses);
+
+		/*Iterate Online Courses*/
+		for(course in education.onlineCourses){
+			/*Append Online Courses*/
+			$("#education").append(HTMLschoolStart);
+
+			/*Format Online Courses*/
+			var formattedOnlineTitle = replaceData(HTMLonlineTitle, education.onlineCourses[course].title);
+			var formattedOnlineTitleAndUrl = replaceData(formattedOnlineTitle, education.onlineCourses[course].url, url);
+			var formattedOnlineSchool = replaceData(HTMLonlineSchool, education.onlineCourses[course].school);
+			var formattedTitleUrlSchool = formattedOnlineTitleAndUrl + formattedOnlineSchool;
+			var formattedOnlineDates = replaceData(HTMLonlineDates, education.onlineCourses[course].dates);
+
+			/*Append Online Courses*/
+			$('.education-entry:last').append(formattedTitleUrlSchool);
+			$('.education-entry:last').append(formattedOnlineDates);
+		}
 	}
 }
 
@@ -204,6 +245,7 @@ work.display();
 /*Run Projects display*/
 projects.display();
 
-
+/*Run Education display*/
+education.display();
 
 
