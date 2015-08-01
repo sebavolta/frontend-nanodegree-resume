@@ -46,7 +46,11 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   Uncomment the <script> tag below when you're ready to add an interactive
   Google Map to your resume!
   -->
-<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+  <!-- Including Pretty Photo -->
+  <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+  <script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 
   <meta name="viewport" content="width=device-width">
 </head>
@@ -113,7 +117,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     */
 
 
-    /*if(document.getElementsByClassName('flex-item').length === 0) {
+    if(document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('topContacts').style.display = 'none';
     }
     if(document.getElementsByTagName('h1').length === 0) {
@@ -133,7 +137,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     }
     if(document.getElementById('map') === null) {
       document.getElementById('map-div').style.display = 'none';
-    }*/
+    }
   </script>
 </body>
 </html>

@@ -49,11 +49,11 @@ var bio = {
 
 		/*Append Bio Contact*/
 		$("#topContacts").append(formattedGeneric);
-		$("#topContacts").append(formattedMobile);
-		$("#topContacts").append(formattedEmail);
-		$("#topContacts").append(formattedTwitter);
-		$("#topContacts").append(formattedGithub);
-		$("#topContacts").append(formattedBlog);
+		$("#topContacts, #footerContacts").append(formattedMobile);
+		$("#topContacts, #footerContacts").append(formattedEmail);
+		$("#topContacts, #footerContacts").append(formattedTwitter);
+		$("#topContacts, #footerContacts").append(formattedGithub);
+		$("#topContacts, #footerContacts").append(formattedBlog);
 		$("#topContacts").append(formattedLocation);
 
 		/*Format Bio Pic and Welcome*/
@@ -71,7 +71,7 @@ var bio = {
 		$("#header").append(HTMLskillsStart);
 
 		/*Format and append Skills*/
-		for(skill in bio.skills){
+		for(var skill in bio.skills){
 			$("#skills:last").append(replaceData(HTMLskills, bio.skills[skill]));
 		}
 	}
@@ -83,21 +83,28 @@ var work = {
 		{
 			"employer": "ITX Corp.",
 			"title": "Front End Developer",
-			"location": "Rochester, USA",
+			"location": "New York, Unated States",
 			"dates": "November 2011 - Today",
 			"description": "I work as a developer for CSS/JS solutions applied to DNN websites and Mobile Applications."
 		},
 		{
 			"employer": "Axyoma",
 			"title": "PHP and CSS Developer",
-			"location": "Rosario, Argentina",
+			"location": "Rosario, Santa Fe, Argentina",
 			"dates": "January 2009 - October 2011",
 			"description": "I worked as a developer for PHP backend solutions and CSS stylesheets for websites."
+		},
+		{
+			"employer": "Jaque Group",
+			"title": "PHP Developer",
+			"location": "Barcelona, España",
+			"dates": "January 2008 - October 2009",
+			"description": "I worked as a developer for PHP backend solutions."
 		}
 	],
 	"display": function(){
 		/*Iterate Work*/
-		for(job in work.jobs){
+		for(var job in work.jobs){
 			/*Append Work Start*/
 			$("#workExperience").append(HTMLworkStart);
 
@@ -125,18 +132,18 @@ var projects = {
 			"title": "ITX.com",
 			"dates": "January 2015 - March 2015",
 			"description": "Responsive website for the ITX company.",
-			"images": ["images/itx1.jpg", "images/itx2.jpg"]
+			"images": ["images/itx1", "images/itx2"]
 		},
 		{
 			"title": "Youth Villages",
 			"dates": "October 2014 - November 2014",
 			"description": "Responsive website for the Youth Villages caritative organization",
-			"images": ["images/yv1.jpg", "images/yv2.jpg"]
+			"images": ["images/yv1", "images/yv2"]
 		}
 	],
 	"display": function(){
 		/*Iterate Projects*/
-		for(proj in projects.projects){
+		for(var proj in projects.projects){
 			/*Append Projects Start*/
 			$("#projects").append(HTMLprojectStart);
 
@@ -151,8 +158,10 @@ var projects = {
 			$('.project-entry:last').append(formattedDescription);
 
 			/*Format and Append Projects Images*/
-			for(img in projects.projects[proj].images){
-				$('.project-entry:last').append(replaceData(HTMLprojectImage, projects.projects[proj].images[img]));
+			for(var img in projects.projects[proj].images){
+				var formattedProjectImage = replaceData(HTMLprojectImage, projects.projects[proj].images[img]);
+				var formattedBigImage = replaceData(formattedProjectImage, projects.projects[proj].images[img], "%img%");
+				$('.project-entry:last').append(formattedBigImage);
 			}
 		}
 	}
@@ -163,7 +172,7 @@ var education = {
 	"schools": [
 		{
 			"name": "Belgrano",
-			"city": "Rosario",
+			"location": "Rosario",
 			"degree": "Analyst",
 			"majors": ["Major 1", "Major 2", "Major 3"],
 			"dates": 2007,
@@ -171,12 +180,20 @@ var education = {
 		},
 		{
 			"name": "UNR",
-			"city": "Rosario",
+			"location": "Rosario",
 			"degree": "Designer",
 			"majors": ["UNR Major 1", "UNR Major 2", "UNR Major 3"],
 			"dates": 2009,
 			"url": "http://www.unr.edu.ar"
 		},
+		{
+			"name": "Maristas",
+			"location": "Pergamino, Buenos Aires",
+			"degree": "High School",
+			"majors": ["Maristas Major 1", "Maristas Major 2", "Maristas Major 3"],
+			"dates": 2001,
+			"url": "http://www.maristas.edu.ar"
+		}
 	],
 	"onlineCourses": [
 		{
@@ -194,7 +211,7 @@ var education = {
 	],
 	"display": function(){
 		/*Iterate Education*/
-		for(school in education.schools){
+		for(var school in education.schools){
 			/*Append Education Start*/
 			$("#education").append(HTMLschoolStart);
 
@@ -204,7 +221,7 @@ var education = {
 			var formattedSchoolDegree = replaceData(HTMLschoolDegree, education.schools[school].degree);
 			var formattedNameUrlDeg = formattedSchoolNameAndUrl + formattedSchoolDegree;
 			var formattedSchoolDates = replaceData(HTMLschoolDates, education.schools[school].dates);
-			var formattedSchoolLocation = replaceData(HTMLschoolLocation, education.schools[school].city);
+			var formattedSchoolLocation = replaceData(HTMLschoolLocation, education.schools[school].location);
 			var formattedSchoolMajor = replaceData(HTMLschoolMajor, education.schools[school].majors);
 
 			/*Append Education*/
@@ -218,7 +235,7 @@ var education = {
 		$("#education").append(HTMLonlineClasses);
 
 		/*Iterate Online Courses*/
-		for(course in education.onlineCourses){
+		for(var course in education.onlineCourses){
 			/*Append Online Courses*/
 			$("#education").append(HTMLschoolStart);
 
@@ -236,6 +253,19 @@ var education = {
 	}
 }
 
+/*Append map object and function*/
+var appendMap = {
+	div: "#map-div",
+	"display": function(){
+		$("#map-div").append(googleMap);
+	}
+}
+
+/*Initialize Pretty photo plugin*/
+function initPrettyPhoto(){
+	$("a[rel^='prettyPhoto']").prettyPhoto();
+}
+
 /*Run Bio display*/
 bio.display();
 
@@ -248,4 +278,8 @@ projects.display();
 /*Run Education display*/
 education.display();
 
+/*Run Map Display*/
+appendMap.display();
 
+/*Run Pretty Photo Plugin*/
+initPrettyPhoto();

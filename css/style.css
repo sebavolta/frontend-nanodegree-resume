@@ -202,6 +202,20 @@ span {
 	font-size: 20px;
 }
 
+#footerContacts {
+	height: auto;
+}
+
+.imgSmall {
+	display: inline-block;
+	opacity: 1;
+	transition: opacity 0.2s;
+}
+
+.imgSmall:hover {
+	opacity: 0.8;
+}
+
 /* Media queries to handle various device widths */
 
 @media only screen and (max-width: 1024px) {
@@ -220,11 +234,48 @@ span {
 	#lets-connect {
 		margin-top: 10%;
 	}
+
 	.biopic {
 		width: 150px;
 	}
+
 	.welcome-message {
 		display: none;
+	}
+
+	#skills {
+		display: none;
+	}
+
+	h1 {
+		font-size: 29px;
+		display: block;
+	}
+
+	#topContacts {
+		font-size: 15px;
+		line-height: 24px;
+		padding: 10px 0px;
+		height: auto;
+		justify-content: flex-start;
+	}
+
+	.work-entry {
+		padding: 15px;
+	}
+
+	.date-text {
+		float: none;
+		padding: 3px 0 0 0;
+	}
+
+	.location-text {
+		float: none;
+		padding: 3px 0 0 0;
+	}
+
+	#footerContacts {
+		justify-content: flex-start;
 	}
 }
 
